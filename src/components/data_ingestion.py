@@ -29,8 +29,8 @@ class DataIngestion:
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             
-            # Split the dataset (80% training, 20% testing)
-            train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
+            # Split the dataset (90% training + valid, 10% testing)
+            train_set,test_set=train_test_split(df,test_size=0.1) #random_state=32
 
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
@@ -65,7 +65,7 @@ if __name__=="__main__":
     prep_pipeline = pipeline_builder.get_full_pipeline() #preprocessor pipeline
 
     trainer = ModelTrainer(prep_pipeline,n_splits=5)
-    best_model, best_model_name = trainer.select_best_model(X_train, y_train, n_trials=20)
+    best_model, best_model_name = trainer.select_best_model(X_train, y_train, n_trials=15)
 
 
 

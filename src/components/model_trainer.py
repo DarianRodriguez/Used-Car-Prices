@@ -27,7 +27,7 @@ class ModelTrainerConfig:
     models: dict = field(default_factory=lambda: {
         # "ElasticNet": ElasticNet(),
         # "Decision Tree": DecisionTreeRegressor(),
-        "Random Forest": RandomForestRegressor(),
+        #"Random Forest": RandomForestRegressor(),
         "HistGradientBoosting Regressor": HistGradientBoostingRegressor(),
     })
 
@@ -53,9 +53,9 @@ class ModelTrainerConfig:
         "HistGradientBoosting Regressor": {
             'model__max_iter': Integer(100, 1000),
             'model__learning_rate': Real(1e-4, 1.0, prior='log-uniform'),
-            'model__max_depth': Integer(3, 15),  # Max depth of individual trees
-            'model__min_samples_leaf': Integer(5, 50),  # Min samples per leaf
-            'model__max_bins': Integer(50, 250),  # Max bins for feature histogram
+            'model__max_depth': Integer(3, 15),  
+            'model__min_samples_leaf': Integer(5, 50),  
+            'model__max_bins': Integer(50, 250), 
         }
     })
 
